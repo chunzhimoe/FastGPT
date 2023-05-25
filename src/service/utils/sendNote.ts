@@ -6,16 +6,16 @@ import * as OpenApi from '@alicloud/openapi-client';
 // @ts-ignore
 import * as Util from '@alicloud/tea-util';
 
-const myEmail = process.env.MY_MAIL;
 const mailTransport = nodemailer.createTransport({
-  // host: 'smtp.qq.phone',
-  service: 'qq',
-  secure: true, //安全方式发送,建议都加上
+  host: 'smtp.example.com', // SMTP 服务器地址
+  port: 25, // SMTP 服务器端口号
+  secure: false, //安全方式发送,建议都加上
   auth: {
     user: myEmail,
     pass: process.env.MAILE_CODE
   }
 });
+
 
 const emailMap: { [key: string]: any } = {
   [UserAuthTypeEnum.register]: {
