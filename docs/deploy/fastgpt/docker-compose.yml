@@ -13,7 +13,7 @@ services:
       - POSTGRES_DB=fastgpt
     volumes:
       # 刚创建的文件
-      - /root/fastgpt/pg/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /root/fastgpt/pg/init.sql:/docker-entrypoint-initdb.d/init.sh
       - /root/fastgpt/pg/data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
   mongodb:
