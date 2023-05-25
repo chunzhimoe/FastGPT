@@ -13,7 +13,7 @@ services:
       - POSTGRES_DB=fastgpt
     volumes:
       # 刚创建的文件
-      - /root/fastgpt/pg/init.sql:/docker-entrypoint-initdb.d/init.sh
+      - /root/fastgpt/pg/init.sql:/docker-entrypoint-initdb.d/init.sql
       - /root/fastgpt/pg/data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
   mongodb:
@@ -73,15 +73,5 @@ services:
       # claude
       - CLAUDE_BASE_URL=calude模型请求地址
       - CLAUDE_KEY=CLAUDE_KEY
-  nginx:
-    image: nginx:alpine3.17
-    container_name: nginx
-    restart: always
-    network_mode: host
-    volumes:
-      # 刚创建的文件
-      - /root/fastgpt/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /root/fastgpt/nginx/logs:/var/log/nginx
-      # https证书，没有的话不填，对应的nginx.conf也要修改
-      - /root/fastgpt/nginx/ssl/docgpt.key:/ssl/docgpt.key
-      - /root/fastgpt/nginx/ssl/docgpt.pem:/ssl/docgpt.pem
+    ports:
+      - "9000:3000"
